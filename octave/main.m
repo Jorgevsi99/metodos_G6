@@ -34,7 +34,7 @@ datos="";
 
 ##try 
 ##  [y, datos, iter] = biseccion(f,a,b);
-##  fprintf('El valor de corte es y=%d, el número de iteraciones es %d\n',y,iter);
+##  fprintf('El valor de corte es y=%d, el nÃºmero de iteraciones es %d\n',y,iter);
 ##  
 ##  h=figure(1);
 ##  x = a-delta:0.1:b+delta;
@@ -58,7 +58,7 @@ datos="";
 ##  set(gca, "box", "on")
 ##  
 ##  [n,m] = size(datos)
-##  fprintf('Interación\ta\tb\tc\tf(a)\tf(b)\tf(c)\terror\n');
+##  fprintf('InteraciÃ³n\ta\tb\tc\tf(a)\tf(b)\tf(c)\terror\n');
 ##  for i=1:n
 ##    fprintf('%d\t',i);
 ##    for j=1:m
@@ -153,11 +153,50 @@ datos="";
 
 % Problema 4: SECANTE
 
+
+##display('Punto de inicio de la zona de saturacion de un JFET 2N3819:');
+##
+##try 
+##  [y, datos, iter] = secante(f,a,b);
+##  fprintf('\nSolucion: x = %d\nNum. de iteraciones: %d\n',y,iter);
+##  
+##  ezplot(f);
+##  hold on;
+##  plot(y,0,"or");
+##    
+##  [n,m] = size(datos);
+##  fprintf('\nNo. It\tP. Anterior\tP. Actual\tError\n');
+##  for i=1:n
+##    fprintf('%d\t',i);
+##    for j=1:m
+##      fprintf('%d\t',datos(i,j));
+##    endfor
+##    fprintf('\n');
+##  endfor
+##  
+##
+##catch err
+##  fprintf('Error: %s\n',err.message);
+##  %err.identifier
+##end
+##
+##hold off;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Problema 5: REGULA FALSI
+
+
+a=-3.531;
+b=-2.648;
+
 display('Punto de inicio de la zona de saturacion de un JFET 2N3819:');
 
 try 
-  [y, datos, iter] = secante(f,a,b);
-  fprintf('\nSolucion: x = %d\nNum. de iteraciones: %d\n',y,iter);
+  [y, datos, iter] = regfal(f,a,b);
+  fprintf('\nSolucion: x = %d\nNum. de iteraciones: %d\n',y,iter-2);
   
   ezplot(f);
   hold on;
@@ -180,3 +219,4 @@ catch err
 end
 
 hold off;
+
