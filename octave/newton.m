@@ -1,13 +1,13 @@
 %NEWTON RAPHSON
 %   NEWTON(FUN,A,D,T,ITER) llenar
 %       [c,datos] = newton(fun, a, d, tol, iter)
-%       c = raiz de la función
-%       datos = todas las variables de la ejecución
-%       fun = la función a tratar
+%       c = raiz de la funciÃ³n
+%       datos = todas las variables de la ejecuciÃ³n
+%       fun = la funciÃ³n a tratar
 %       a = valor inicial de x
 %       d = derivada de la funcion
 %       tol = tolerancia
-%       iter = número máximo de iteraciones
+%       iter = nÃºmero mÃ¡ximo de iteraciones
 
 function [c,datos,j] = newton(fun,a,d,tol=0.01,iter=1000)
   j=0;
@@ -21,7 +21,7 @@ function [c,datos,j] = newton(fun,a,d,tol=0.01,iter=1000)
       j=j+1;
       %almacenamos el primer punto
       datos(j,1)=a;
-      %Aproximamos la raiz con la fÃ³rmula correpondiente
+      %Aproximamos la raiz con la fÃƒÂ³rmula correpondiente
       xi=a-(f(a)/der(a));
       %Calculamos el porcentaje de error
       ea=abs((xi-a)/xi)*100;
@@ -32,8 +32,8 @@ function [c,datos,j] = newton(fun,a,d,tol=0.01,iter=1000)
       c=xi;
       %fprintf('%d\t%f\t%f\n',j,a,ea);
     elseif j>iter
-      msgID = 'PUNTOFIJO:iteraciones';
-      msg = 'Gran número de iteraciones, posiblemente el método divergió';
+      msgID = 'NR:iteraciones';
+      msg = 'Gran nÃºmero de iteraciones, posiblemente el mÃ©todo divergiÃ³';
       error(msgID,msg);
     endif
     if ea<tol
