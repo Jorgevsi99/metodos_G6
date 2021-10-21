@@ -1,20 +1,18 @@
 %SECANTE
 %   SECANTE(FUN,A,D,T,ITER) llenar
 %       [c,datos] = secante(fun, a, b, tol, iter)
-%       c = raiz de la función
-%       datos = todas las variables de la ejecución
-%       fun = la función a tratar
+%       c = raiz de la funciÃ³n
+%       datos = todas las variables de la ejecuciÃ³n
+%       fun = la funciÃ³n a tratar
 %       [a,b] intervalo
 %       tol = tolerancia
-%       iter = número máximo de iteraciones
+%       iter = nÃºmero mÃ¡ximo de iteraciones
 
 function [c,datos,i] = secante(fun,a,b,tol=0.01,iter=1000)
   i=0;
   ea=100;
   f=fun;
-  x0=0;
-  x1=0;
-  x2=0;
+  xi=0
   
   while ea>tol
     if i>-1
@@ -22,21 +20,18 @@ function [c,datos,i] = secante(fun,a,b,tol=0.01,iter=1000)
       %almacenamos los primeros datos
       datos(i,1)=a;
       datos(i,2)=b;
-      x0=f(a);
-      x1=f(b);
-      %Aproximamos la raiz con la fÃ³rmula correpondiente
-      x2=b-(x1*((b-a)/(x1-x0)));
+      %Aproximamos la raiz con la fÃƒÂ³rmula correpondiente
+      xi=b-(f(b)*(a-b))/(f(a)-f(b));
       %Calculamos el porcentaje de error
-      ea=abs((x2-b)/x2)*100;
-      a=x0;
-      b=x1;
+      ea=abs((xi-b)/xi)*100;
       %Almacenamos los datos para la funcion main
-      datos(i,3)=x2;
-      datos(i,4)=ea;
-      c=x2;
+      datos(i,3)=ea;
+      a=b;
+      b=xi;
+      c=xi;
     elseif i>iter
-      msgID = 'PUNTOFIJO:iteraciones';
-      msg = 'Gran número de iteraciones, posiblemente el método divergió';
+      msgID = 'SECANTE:iteraciones';
+      msg = 'Gran nÃºmero de iteraciones, posiblemente el mÃ©todo divergiÃ³';
       error(msgID,msg);
     endif
     if ea<tol
